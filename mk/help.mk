@@ -30,6 +30,7 @@ help:
 	@echo "  sitl - the SITL Software In The Loop simulation"
 	@echo "  bbbmini - the Beagle Bone Black mini"
 	@echo "  bebop - the Parrot Bebop"
+	@echo "  disco - the Parrot Disco"
 	@echo "  raspilot - the RaspberryPi + pilot cape combination"
 	@echo "  erleboard - the ErleBoard legacy design"
 	@echo "  minlure - the drone lure for MinnowBoard and others"

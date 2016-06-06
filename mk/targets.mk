@@ -42,6 +42,12 @@ bebop: LDFLAGS += "-static"
 bebop: BUILDSYS_DEPRECATED = 1
 bebop: all
 
+disco: HAL_BOARD = HAL_BOARD_LINUX
+disco: TOOLCHAIN = BBONE
+disco: LDFLAGS += "-static"
+disco: BUILDSYS_DEPRECATED = 1
+disco: all
+
 minlure: HAL_BOARD = HAL_BOARD_LINUX
 minlure: TOOLCHAIN = NATIVE
 minlure: BUILDSYS_DEPRECATED = 1
