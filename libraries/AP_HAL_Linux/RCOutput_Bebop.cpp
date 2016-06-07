@@ -249,6 +249,7 @@ void RCOutput_Bebop::init()
         AP_HAL::panic("RCOutput_Bebop: can't get i2c sem");
         return; /* never reached */
     }
+    printf("init RCOutput_Bebop\n");
 
     /* Initialize thread, cond, and mutex */
     ret = pthread_mutex_init(&_mutex, NULL);

@@ -66,6 +66,7 @@ private:
 class Linux::PWM_Sysfs_Bebop : public Linux::PWM_Sysfs_Base {
 public:
     PWM_Sysfs_Bebop(uint8_t channel);
+    void set_polarity(PWM_Sysfs_Base::Polarity polarity) override { }
 
 private:
     char *_generate_export_path();
@@ -73,8 +74,6 @@ private:
     char *_generate_enable_path(uint8_t channel);
     char *_generate_duty_path(uint8_t channel);
     char *_generate_period_path(uint8_t channel);
-
-    void set_polarity(PWM_Sysfs_Base::Polarity polarity) override { }
 
     PWM_Sysfs_Base::Polarity get_polarity() override
     {
