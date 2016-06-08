@@ -37,6 +37,7 @@ public:
     bool get_temperature(float &temperature);
 
 private:
+    AP_HAL::OwnPtr<AP_HAL::I2CDevice> _dev;
     void _measure();
     void _collect();
     void _timer();
