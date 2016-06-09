@@ -37,6 +37,11 @@ extern const AP_HAL::HAL &hal;
 #define I2C_BUS_MS4525DO 0
 #endif
 
+AP_Airspeed_I2C::AP_Airspeed_I2C(const AP_Float &psi_range) :
+    _psi_range(psi_range)
+{
+}
+
 // probe and initialise the sensor
 bool AP_Airspeed_I2C::init()
 {
@@ -95,8 +100,8 @@ void AP_Airspeed_I2C::_collect()
     dT_raw = (data[2] << 8) + data[3];
     dT_raw = (0xFFE0 & dT_raw) >> 5;
 
-    const float P_min = -1.0f;
-    const float P_max = 1.0f;
+    const float P_max = _psi_range.get();
+    const float P_min = - P_max;
     const float PSI_to_Pa = 6894.757f;
     /*
       this equation is an inversion of the equation in the
