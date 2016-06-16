@@ -176,7 +176,10 @@ def check_libiio(cfg, env):
     cfg.check_cfg(package='libiio', mandatory=False, global_define=True,
                   args=['--libs', '--cflags'])
     env.LIB += cfg.env['LIB_LIBIIO']
-    # workaround bug in libiio 0.6 not including -ldl
+    env.INCLUDES += cfg.env['INCLUDES_LIBIIO']
+    env.CFLAGS += cfg.env['CFLAGS_LIBIIO']
+    env.LIBPATH += cfg.env['LIBPATH_LIBIIO']
+    # workaround bug in libiio 0.6 not including -ldl -lxml2 -lz
     if cfg.env['LIB_LIBIIO']:
-        env.LIB += ['dl']
+        env.LIB += ['dl', 'xml2', 'z']
     return True
