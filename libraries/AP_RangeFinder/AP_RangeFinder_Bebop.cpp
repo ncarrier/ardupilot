@@ -35,7 +35,6 @@
 #include "AP_RangeFinder_Bebop.h"
 #include <AP_HAL_Linux/Thread.h>
 #include <AP_HAL_Linux/GPIO.h>
-#include <AP_HAL_Linux/GPIO_Bebop.h>
 
 /*
  * this mode is used at low altitude
