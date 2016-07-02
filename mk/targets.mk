@@ -38,13 +38,11 @@ pxf: all
 
 bebop: HAL_BOARD = HAL_BOARD_LINUX
 bebop: TOOLCHAIN = BBONE
-bebop: LDFLAGS += "-static"
 bebop: BUILDSYS_DEPRECATED = 1
 bebop: all
 
 disco: HAL_BOARD = HAL_BOARD_LINUX
 disco: TOOLCHAIN = BBONE
-disco: LDFLAGS += "-static"
 disco: BUILDSYS_DEPRECATED = 1
 disco: all
 
