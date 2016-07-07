@@ -183,3 +183,11 @@ def check_libiio(cfg, env):
     if cfg.env['LIB_LIBIIO']:
         env.LIB += ['dl', 'xml2', 'z']
     return True
+
+@conf
+def check_libdl(cfg, env):
+    ret = cfg.check(compiler='cxx', lib='dl')
+    if ret:
+        env.LIB += cfg.env['LIB_DL']
+        cfg.define('HAVE_LIBDL', 1)
+    return ret
