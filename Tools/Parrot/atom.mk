@@ -84,3 +84,44 @@ LOCAL_LIBRARIES := \
 
 include $(BUILD_EXECUTABLE)
 
+###############################################################################
+# APM:Plane, for disco
+###############################################################################
+
+include $(CLEAR_VARS)
+
+LOCAL_MODULE := apm-plane-disco
+LOCAL_MODULE_FILENAME := apm-plane-disco
+LOCAL_DESCRIPTION := APM:Plane is an open source autopilot
+LOCAL_CATEGORY_PATH := $(APM_COMMON_CATEGORY_PATH)
+
+APM_PLANE_DISCO_SRC_LIBRARY_DIRS := \
+	$(APM_COMMON_SRC_LIBRARY_DIRS) \
+	$(shell cat $(LOCAL_PATH)/../../ArduPlane/directories_list)
+
+APM_PLANE_DISCO_SRC_DIRS := \
+	ArduPlane \
+	$(addprefix libraries/,$(APM_PLANE_DISCO_SRC_LIBRARY_DIRS))
+
+LOCAL_SRC_FILES := \
+	$(foreach dir,$(APM_PLANE_DISCO_SRC_DIRS),$(call all-cpp-files-in,../../$(dir)))
+
+LOCAL_CXXFLAGS := \
+	$(APM_COMMON_CXXFLAGS) \
+	-DSKETCH=\"ArduPlane\" \
+	-DSKETCHNAME="\"ArduPlane\"" \
+	-DAPM_BUILD_DIRECTORY=APM_BUILD_ArduPlane \
+	-DCONFIG_HAL_BOARD_SUBTYPE=HAL_BOARD_SUBTYPE_LINUX_DISCO
+
+LOCAL_C_INCLUDES := \
+	$(APM_COMMON_C_INCLUDES)
+
+LOCAL_LIBRARIES := \
+	$(APM_COMMON_LIBRARIES)
+
+LOCAL_COPY_FILES = \
+	50-apm-plane-disco.rc:etc/boxinit.d/ \
+	../Frame_params/Parrot_Disco.param:etc/arduplane/disco.parm
+
+include $(BUILD_EXECUTABLE)
+
