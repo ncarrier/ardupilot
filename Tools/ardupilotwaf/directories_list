@@ -15,6 +15,7 @@ AP_HAL_Empty
 AP_InertialSensor
 AP_Math
 AP_Mission
+AP_Module
 AP_Mount
 AP_NavEKF
 AP_NavEKF2
