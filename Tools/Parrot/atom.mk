@@ -13,6 +13,7 @@ APM_COMMON_CXXFLAGS := \
 	-DF_CPU= \
 	-DGIT_VERSION=\"$(shell cd $(LOCAL_PATH); git describe --always --dirty)\" \
 	-DHAVE_CMATH_ISFINITE \
+	-DHAVE_LIBDL \
 	-DMAVLINK_PROTOCOL_VERSION=2 \
 	-DNEED_CMATH_ISFINITE_STD_NAMESPACE \
 	-DSKETCHBOOK="\"$(LOCAL_PATH)\"" \
@@ -122,6 +123,9 @@ LOCAL_LIBRARIES := \
 LOCAL_COPY_FILES = \
 	50-apm-plane-disco.rc:etc/boxinit.d/ \
 	../Frame_params/Parrot_Disco.param:etc/arduplane/disco.parm
+
+LOCAL_LDLIBS := \
+	-ldl
 
 include $(BUILD_EXECUTABLE)
 
