@@ -162,6 +162,7 @@ public:
     uint16_t bus;
     uint16_t kernel_cs;
     uint8_t ref;
+    int16_t last_mode = -1;
 };
 
 SPIBus::~SPIBus()
@@ -275,11 +276,16 @@ bool SPIDevice::transfer(const uint8_t *send, uint32_t send_len,
         return false;
     }
 
-    int r = ioctl(_bus.fd, SPI_IOC_WR_MODE, &_desc.mode);
-    if (r < 0) {
-        hal.console->printf("SPIDevice: error on setting mode fd=%d (%s)\n",
-                            _bus.fd, strerror(errno));
-        return false;
+    int r;
+
+    if (_bus.last_mode != _desc.mode) {
+        r = ioctl(_bus.fd, SPI_IOC_WR_MODE, &_desc.mode);
+        if (r < 0) {
+            hal.console->printf("SPIDevice: error on setting mode fd=%d (%s)\n",
+                                _bus.fd, strerror(errno));
+            return false;
+        }
+        _bus.last_mode = _desc.mode;
     }
 
     _cs_assert();
