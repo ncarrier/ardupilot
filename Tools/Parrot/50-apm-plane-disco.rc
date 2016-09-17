@@ -2,4 +2,3 @@ service apm-plane-disco /usr/bin/apm-plane-disco -A udp:192.168.42.255:14550:bca
     class main
     user root
     disabled
-    oneshot
